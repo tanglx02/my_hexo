@@ -2,12 +2,10 @@
 title: 我在manjaro下使用的软件
 categories:
   - Linux
-  - 折腾
 tags:
   - Linux
-  - 折腾
+  - 软件
   - manjaro
-abbrlink: bc098604
 date: 2021-05-31 10:24:00
 top:
 ---
@@ -63,28 +61,3 @@ top:
 |     |     |     |     |
 |     |     |     |     |
 |     |     |     |     |
-
-## 一、小工具
-## 二、视频图片
-1.kdenlive 视频剪辑软件，[官网链接](https://kdenlive.org/zh/features-zh/)
-软件名称:kdenlive
-安装方法:
-
-``` ebnf
-sudo pacman -S kdenlive
-```
-
-2.图片编辑软件，[官网链接](https://www.gimp.org/)
-软件名称:gimp
-安装方法:
-
-``` ebnf
-sudo pacman -S gimp
-```
-
-## 三、开发设计
-
-## 四、办公学习
-
-## 五、影音娱乐
-
