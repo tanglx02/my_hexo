@@ -87,15 +87,15 @@ menu:
 # 文末声明
 article_txt: 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 tanglx@aliyun.com
 
-bottom_text: ©2018-2023 tanglx
+bottom_text: ©2018-2024 tanglx
 # 自定义页面最下方的站点版权信息
 # 如果不填，则自定义为 ©2017 author (这个author为hexo根目录_config.yml中配置的)
 
 # 底部备案号
-miit:
-  on: true
-  info: 滇ICP备2022007809号-1
-  url: http://beian.miit.gov.cn/ # 默认链接为 http://beian.miit.gov.cn/
+#miit:
+#  on: true
+#  info: 滇ICP备2022007809号-1
+#  url: http://beian.miit.gov.cn/ # 默认链接为 http://beian.miit.gov.cn/
 
 
 reward: true
