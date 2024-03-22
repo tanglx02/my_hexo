@@ -241,6 +241,9 @@ disqus:
   # 获取shortname：https://help.disqus.com/customer/en/portal/articles/466208-what-s-a-shortname-
 
 twikoo:
+  envId: https://lacewing-popular-basilisk.ngrok-free.app/
+  region: ap-shanghai
+  path: window.location.pathname
 
 gitalk:
   githubID: tanglx02
