@@ -1,9 +1,9 @@
 ---
 title: 我在manjaro下使用的软件
 categories:
-  - Linux
+  - linux
 tags:
-  - Linux
+  - linux
   - 软件
   - manjaro
 date: 2021-05-31 10:24:00

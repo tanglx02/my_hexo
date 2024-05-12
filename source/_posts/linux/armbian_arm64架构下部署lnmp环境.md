@@ -3,7 +3,7 @@ title: armbian_arm64架构下部署lnmp环境
 date: 2024-03-18 18:44:55
 categories: 
 - linux
-tags: 
+tags: armbian,arm64,lnmp
 - linux
 - armbian
 - arm64

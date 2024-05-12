@@ -2,9 +2,9 @@
 title: manjaro录音降噪
 date: 2023-07-18 14:37:46
 categories:
-- Linux
+- linux
 tags:
-- Linux
+- linux
 - manjaro
 - 降噪
 top: 
