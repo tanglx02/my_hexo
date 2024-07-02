@@ -666,12 +666,12 @@ select ID,name from test_table where age=25;
 分页基础语法：`select 列 from 表 [where 条件判断] limit 显示数量;`
 排序分页嵌套：`select 列 from 表 [where 条件判断] order by 列 [asc|desc] limit 显示数量;`
 
-### 6.2、pymysql
+### 6.2、pymysql模块
 在python中，使用第三方库：`pymysql`来完成对mysql数据库的操作
 安装：`pip install mysql`
 
-**创建mysql数据库连接**
-创建连接对象=Connection(数据库信息)
+#### 6.2.1、创建mysql数据库连接
+- 创建连接对象=Connection(数据库信息)
 
 ``` python
 # 创建mysql数据库连接
@@ -689,10 +689,10 @@ print(conn.get_server_info())
 conn.close()
 ```
 
-**执行sql语句-查询**
-创建游标=连接对象.cursor() #创建游标对象,使用游标操作数据库，
-游标对象.execute("执行语句")	#使用游标对象执行数据库
-游标对象.fetchall() #接收数据以元组的形式显示
+#### 6.2.2、执行sql语句-查询
+- 创建游标=连接对象.cursor() #创建游标对象,使用游标操作数据库，
+- 游标对象.execute("执行语句")	#使用游标对象执行数据库
+- 游标对象.fetchall() #接收数据以元组的形式显示
 
 ``` python
 # 创建mysql数据库连接
@@ -706,9 +706,138 @@ conn = Connection(
 )
 cursor = conn.cursor()	# 创建游标对象
 conn.select_db("test")	#选择数据库
-cursor.execute("select * from test_table;")		#使用游标对象执行sql语句
-results=cursor.fetchall()   #接收显示数据
+cursor.execute("select * from test_table;")		#使用游标对象执行sql查询语句
+results=cursor.fetchall()   #使用游标接收显示数据
 print(results)				#打印数据
-#关闭数据库连接
-conn.close()
+conn.close()				#关闭数据库连接
 ```
+
+#### 6.2.3、执行sql语句-插入
+- pymysql在执行数据插入或其它产生数据更改sql语句是，默认是需要确认的。
+- 手动提交更改可以通过`连接对象.commit()`
+- 或者使用自动提交更改，在创建连接对象中添加`autocommit=True`
+
+示例：
+
+``` python
+# 创建mysql数据库连接
+from pymysql import Connection  #导包
+# 获取到mysql数据库的连接对象
+conn = Connection(
+    host='localhost',   #主机名(或ip)
+    port=3306,          #端口
+    user='root',        #账户名
+    password='123456',   #密码
+    autocommit=True     #自动提交更改(和连接对象.commit()效果一样)
+)
+cursor = conn.cursor()	# 创建游标对象
+conn.select_db("test")	#选择数据库
+cursor.execute("insert into test_table values(10004,'leo',21)")		#使用游标对象执行sql查询语句
+#conn.commit()               #手动提交更改
+conn.close()				#关闭数据库连接
+```
+
+## 七、多线程编程
+- 多个进程同时在运行，即不同的程序同时运行，称之为：多任务并行执行
+- 一个进程内的多个线程同时在运行，称之为：多线程并行执行
+
+### 7.1、threading模块
+python多线程可以通过`threading`内置模块来实现
+语法：
+
+``` python
+import threading	#导入包
+线程对象1=threading.Thread(target=函数)	#创建线程1
+线程对象2=threading.Thread(target=函数,args=("函数的参数",))	#创建线程2
+线程对象1.start()		#启动多线程任务
+线程对象2.start()		#启动多线程任务
+```
+注意事项：
+- 函数的参数写到args=("参数",)元组里面，组后不要忘记加`,`
+
+
+示例：
+
+``` python
+#threading模块多线程示例
+import time
+import threading
+
+def work(name):             #创建一个函数
+    for x in range(5):
+        time.sleep(1)
+        print(f"我是{name},{x}")
+
+#创建线程一
+work_threa1=threading.Thread(target=work,args=("tom",))
+#创建线程二
+work_threa2=threading.Thread(target=work,args=("alis",))
+#启动线程任务
+work_threa1.start()
+work_threa2.start()
+```
+
+
+## 八、网络编程
+socket(简称：套接字)是进程之间通信的一个工具，负责进程之间网络数据传输，好比数据的搬运工
+**客户端和服务端**
+- 两个进程之间通过Socket进行相互通讯，就必须有服务端和客户端
+- Socket服务端：等待其它进程的连接、可接受发来的消息、可以回复消息(被动)
+- Socket客户端：主动连接服务端、可以发送消息、可以接收回复(主动)
+
+### 8.1、Socket服务端编程
+创建Socket服务端步骤：
+
+``` python
+# 1.创建Socket对象
+import socket
+socket_server = socket.socket()
+
+# 2.绑定socket_server到指定ip和端口(元组)
+socket_server.bind(("0.0.0.0",7777))
+
+# 3. 服务端开始监听端口
+## listen()里面可以填写int类型的整数，表示允许连接的数量，超出的会等待，不填的话会自动分配
+socket_server.listen()
+
+# 4.接收客户端连接，获得连接对象
+conn,address = socket_server.accept()
+## accept方法是一个阻塞方法，如果没有连接，会卡在这一行代码
+## accept返回的是一个二元元组，用两个变量接收2个元素
+## address是客户端地址,conn是消息传输对象用来发送和接收消息
+print(f"接收到客户端连接，地址为{address}")
+
+# 5.客户端连接后，通过recv方法，接收客户端发送的消息
+client_data = conn.recv(1024).decode("UTF-8")
+## recv方法返回值是字节,通过decode方法使用UTF-8的编码转换为字符串
+## recv的传参是buffsize，缓冲区大小，一般设置为1024
+print(client_data)
+
+# 6.通过send方法回复客户端消息
+conn.send("我已收到你的连接!".encode("UTF-8"))
+## encode方法将字符串转换为二进制
+# 7.关闭连接
+conn.close()
+socket_server.close()
+```
+
+### 8.1、Socket客户端编程
+Socket客户端创建步骤：
+
+``` python
+# 1.创建sokcet对象
+import socket
+socket_client = socket.socket()
+# 2.连接到服务端(ip端口为元组)
+socket_client.connect(("localhost",8888))
+# 3. 发送消息
+socket_client.send("hello my is client".encode("UTF-8"))
+# 4. 接收消息
+server_data = socket_client.recv(1024).decode("UTF-8")
+print(server_data)
+# 5.关闭连接
+socket_client.close()
+```
+
+注意事项：
+- 死循环后的close方法不可执行
