@@ -9,10 +9,21 @@ tags:
 top: 
 ---
 Windows安装程序后能从控制面板中的卸载找到卸载入口，其实就是通过注册表写入对应键
-
+位置一
 ``` moonscript
 计算机\HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall
 ```
+位置二
+``` moonscript
+计算机\HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall
+```
+
+位置三
+
+``` javascript
+计算机\HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\
+```
+
 安装面板的程序卸载键都在注册表下的Uninstall里面
 
 > 可以利用删除注册表键实现
