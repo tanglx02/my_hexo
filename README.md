@@ -48,6 +48,6 @@ git clone git@github.com:tanglx02/my_hexo.git
 
 ```
 alias hs='hexo clean && hexo g && hexo s'
-alias hd='hexo clean && hexo g && hexo d && git add . && git commit -m "update" && git push -f'
+alias hd='hexo clean && hexo g && hexo d && git add . && git commit -m "update" && git push origin main'
 ```
 
