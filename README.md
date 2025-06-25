@@ -30,7 +30,9 @@ cat ~/.ssh/id_rsa.pub
 
 检查是否配置成功
 
-`ssh -T git@gitee.com`
+```
+ssh -T git@github.com
+```
 
 5、克隆我的hexo
 
