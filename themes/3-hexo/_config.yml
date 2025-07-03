@@ -92,10 +92,10 @@ bottom_text: ©2018-2025 tanglx
 # 如果不填，则自定义为 ©2017 author (这个author为hexo根目录_config.yml中配置的)
 
 # 底部备案号
-#miit:
-#  on: true
-#  info: 滇ICP备2022007809号-1
-#  url: http://beian.miit.gov.cn/ # 默认链接为 http://beian.miit.gov.cn/
+miit:
+on: true
+info: 滇ICP备2025052033号-1
+url: http://beian.miit.gov.cn/ # 默认链接为 http://beian.miit.gov.cn/
 
 
 reward: true
