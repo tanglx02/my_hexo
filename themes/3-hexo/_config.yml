@@ -93,9 +93,9 @@ bottom_text: ©2018-2025 tanglx
 
 # 底部备案号
 miit:
-on: true
-info: 滇ICP备2025052033号-1
-url: http://beian.miit.gov.cn/ # 默认链接为 http://beian.miit.gov.cn/
+  on: true
+  info: 滇ICP备2025052033号-1
+  url: http://beian.miit.gov.cn/ # 默认链接为 http://beian.miit.gov.cn/
 
 
 reward: true
